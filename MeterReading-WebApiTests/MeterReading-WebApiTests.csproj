@@ -34,7 +34,11 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\MeterReading-WebAPI\MeterReading-WebAPI.csproj" />
+    <ProjectReference Include="..\MeterReading-WebAPI\MeterReadingWebAPI.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Tests\" />
   </ItemGroup>
 
 </Project>

@@ -1,10 +1,10 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Swashbuckle.AspNetCore.Annotations;
 using Swashbuckle.AspNetCore.Filters;
-using Microsoft.Net.Http.Headers;
-using Microsoft.AspNetCore.WebUtilities;
+using CSVFile;
 
-namespace Controllers {
+namespace MeterReadingWebAPI.Controllers
+{
 
     [ApiController]
     public class ReadingsController : ControllerBase
@@ -25,11 +25,15 @@ namespace Controllers {
         [SwaggerOperation(Summary = "Upload Meter Reading Data in CSV Format",
                             Description = "Uploads, validates and Creates Meter Reading Data",
                             OperationId = "meter-reading-uploads")]
-        public IActionResult MeterReadingUpload([FromForm] IFormFileCollection files)
+        public async Task<IActionResult> MeterReadingUpload([FromForm] IFormFileCollection files)
         {
             if (files == null || files.Count == 0) return BadRequest("No file given to upload");
-                
-            return Ok();            
+
+            if(!files[0].FileName.ToLower().EndsWith("csv")) return BadRequest("You must send a csv file");
+
+            if (files.Count > 1) return BadRequest("We can only process one file at a time");
+
+            return Ok();
         }
     }
 }

@@ -1,4 +1,4 @@
-using Infrastructure;
+using MeterReadingWebAPI.Infrastructure;
 using Microsoft.AspNetCore.Mvc.ApiExplorer;
 using Microsoft.AspNetCore.Mvc.Versioning;
 using Swashbuckle.AspNetCore.Filters;

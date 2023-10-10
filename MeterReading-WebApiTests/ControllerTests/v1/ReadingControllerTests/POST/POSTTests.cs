@@ -2,11 +2,9 @@
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Text;
-using Controllers;
 using FluentAssertions;
 using MeterReading_WebApiTests.ControllerTests.Scaffolding;
-using Newtonsoft.Json;
-
+using MeterReadingWebAPI.Controllers;
 using Xunit;
 
 // ReSharper disable ReturnValueOfPureMethodIsNotUsed
@@ -27,7 +25,6 @@ namespace MeterReading_WebApiTests.ControllerTests.v1.ReadingControllerTests.POS
             var content = new MultipartFormDataContent();
             var byteArrayContent = new ByteArrayContent(Encoding.UTF8.GetBytes(fileContent));
             byteArrayContent.Headers.ContentType = MediaTypeHeaderValue.Parse("multipart/form-data");
-
             content.Add(byteArrayContent, "files", fileName);
 
             return content;
@@ -37,8 +34,6 @@ namespace MeterReading_WebApiTests.ControllerTests.v1.ReadingControllerTests.POS
         public async Task WhenGivenAFile_ReturnsOkResponse()
         {
             var testData = "test,test,test";
-
-            byte[] bytes = Encoding.ASCII.GetBytes(testData);
 
             var result = await _httpClient.PostAsync("/api/v1/meter-reading-uploads", CreateTestFile("test.csv", testData));
 
@@ -53,6 +48,34 @@ namespace MeterReading_WebApiTests.ControllerTests.v1.ReadingControllerTests.POS
             content.Add(new StringContent("Partner1"), "EntityId");
 
             var result = await _httpClient.PostAsync("/api/v1/meter-reading-uploads", content);
+
+            result.IsSuccessStatusCode.Should().BeFalse();
+            result.StatusCode.Should().Be(HttpStatusCode.BadRequest);
+        }
+
+        [Fact]
+        public async Task WhenGivenNONCsvFile_ReturnsBadRequest()
+        {
+            var testData = "test,test,test";
+
+            var result = await _httpClient.PostAsync("/api/v1/meter-reading-uploads", CreateTestFile("test.png", testData));
+
+            result.IsSuccessStatusCode.Should().BeFalse();
+            result.StatusCode.Should().Be(HttpStatusCode.BadRequest);
+        }
+
+        [Fact]
+        public async Task WhenGivenMultipleCsvFiles_ReturnsBadRequest()
+        {
+            var testData = "test,test,test";
+
+            var testFiles = CreateTestFile("test.png", testData);
+
+            var byteArrayContent = new ByteArrayContent(Encoding.UTF8.GetBytes(testData));
+            byteArrayContent.Headers.ContentType = MediaTypeHeaderValue.Parse("multipart/form-data");
+            testFiles.Add(byteArrayContent, "files", "test.csv");
+
+            var result = await _httpClient.PostAsync("/api/v1/meter-reading-uploads", testFiles);
 
             result.IsSuccessStatusCode.Should().BeFalse();
             result.StatusCode.Should().Be(HttpStatusCode.BadRequest);

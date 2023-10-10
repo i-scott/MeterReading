@@ -3,7 +3,7 @@ using Microsoft.Extensions.Options;
 using Microsoft.OpenApi.Models;
 using Swashbuckle.AspNetCore.SwaggerGen;
 
-namespace Infrastructure
+namespace MeterReadingWebAPI.Infrastructure
 {
     public class ConfigureSwaggerOptions : IConfigureNamedOptions<SwaggerGenOptions>
     {
