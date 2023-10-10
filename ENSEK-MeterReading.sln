@@ -11,6 +11,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Data", "Data", "{6D4509EC-B
 		data\Test_Accounts.csv = data\Test_Accounts.csv
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MeterReading-WebApiTests", "MeterReading-WebApiTests\MeterReading-WebApiTests.csproj", "{00F2A172-61D1-483B-82D0-8311FF43F8A6}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{1FFD96CD-44D3-411A-ACB6-F785B275F8BA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1FFD96CD-44D3-411A-ACB6-F785B275F8BA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1FFD96CD-44D3-411A-ACB6-F785B275F8BA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{00F2A172-61D1-483B-82D0-8311FF43F8A6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{00F2A172-61D1-483B-82D0-8311FF43F8A6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{00F2A172-61D1-483B-82D0-8311FF43F8A6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{00F2A172-61D1-483B-82D0-8311FF43F8A6}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
