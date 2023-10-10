@@ -1,9 +1,10 @@
+using MeterReading;
 using Microsoft.AspNetCore.Mvc;
 
-namespace MeterReading.Controllers
+namespace Controllers
 {
+    [Route("api/v{version:apiVersion}/[controller]")]
     [ApiController]
-    [Route("[controller]")]
     public class WeatherForecastController : ControllerBase
     {
         private static readonly string[] Summaries = new[]
