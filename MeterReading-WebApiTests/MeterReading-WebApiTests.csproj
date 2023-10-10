@@ -37,8 +37,4 @@
     <ProjectReference Include="..\MeterReading-WebAPI\MeterReadingWebAPI.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Tests\" />
-  </ItemGroup>
-
 </Project>
