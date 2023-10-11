@@ -2,8 +2,8 @@
 
 namespace MeterReadingWebAPI.Services.Validators.MeterReadingValidators
 {
-    public interface IValidator
+    public class IsNewReadingValidator : IValidator
     {
-        bool IsValid(MeterReading reading);
+        public bool IsValid(MeterReading reading) { return true; }
     }
 }
