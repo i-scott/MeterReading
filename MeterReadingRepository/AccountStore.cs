@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using Dapper;
 using MeterReadingInterfaces.DataStore;
@@ -20,7 +21,7 @@ namespace MeterReadingRepository
             _logger = logger;
         }
 
-        public async Task<Account> FetchDataAsync(long key)
+        public async Task<Account?> FetchDataAsync(long key)
         {
             try
             {
@@ -40,6 +41,11 @@ namespace MeterReadingRepository
             }
 
             return null;
+        }
+
+        public Task<IList<Account>> FetchDataAsync(string query, object param = null)
+        {
+            throw new NotImplementedException();
         }
     }
 }

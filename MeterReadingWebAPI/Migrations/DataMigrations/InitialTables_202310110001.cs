@@ -15,7 +15,7 @@ namespace MeterReadingWebAPI.Migrations.DataMigrations
             Create.Table("MeterReadings")
                 .WithColumn("Id").AsInt64().NotNullable().PrimaryKey().Identity()
                 .WithColumn("AccountId").AsInt64().NotNullable().ForeignKey("Accounts", "AccountId")
-                .WithColumn("Age").AsDateTime2().NotNullable()
+                .WithColumn("MeterReadingDateTime").AsDateTime2().NotNullable()
                 .WithColumn("MeterReadValue").AsInt64().NotNullable();
         }
 

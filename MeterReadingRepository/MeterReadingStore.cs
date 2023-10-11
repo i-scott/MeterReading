@@ -6,11 +6,12 @@ using MeterReadingInterfaces.DataStore;
 using Microsoft.Extensions.Logging;
 using MeterReadingRepository.Dapper;
 using Dapper;
-using Microsoft.EntityFrameworkCore.Metadata.Internal;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace MeterReadingRepository
 {
-    public class MeterReadingStore : IStoreData<MeterReading, long>, IFetchData<MeterReading, long>
+    public class MeterReadingStore : IStoreData<MeterReading, long?>, IFetchData<MeterReading, long>
     {
         private readonly DapperDBContext _dbContext;
         private readonly ILogger<MeterReadingStore> _logger;
@@ -39,6 +40,22 @@ namespace MeterReadingRepository
             }
 
             return null;
+        }
+
+        public async Task<IList<MeterReading>> FetchDataAsync(string query, object param = null)
+        {
+            try
+            {
+                using var connection = _dbContext.CreateConnection();
+                var result = await connection.QueryAsync<MeterReading>(query, param);
+                return result.ToList();
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, $"Error Fetching Data");
+            }
+
+            return new List<MeterReading>();
         }
 
         public async Task<long?> SetAsync(MeterReading meterReading)
