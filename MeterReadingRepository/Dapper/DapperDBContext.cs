@@ -10,6 +10,6 @@ namespace MeterReadingRepository.Dapper
         public DapperDBContext(DbContextOptions<DapperDBContext> options) : base(options) { }
         public IDbConnection Connection { get; }
         public DbSet<MeterReading> MeterReadings { get; set; }
-      
+        public DbSet<Account> Accounts { get; set; }
     }
 }

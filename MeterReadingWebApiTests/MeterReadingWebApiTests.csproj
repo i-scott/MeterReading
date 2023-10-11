@@ -3,7 +3,7 @@
   <PropertyGroup>
     <TargetFramework>net7.0</TargetFramework>
     <RootNamespace>MeterReading_WebApiTests</RootNamespace>
-    <ImplicitUsings>enable</ImplicitUsings>
+	<ImplicitUsings>disable</ImplicitUsings>
     <Nullable>enable</Nullable>
 
     <IsPackable>false</IsPackable>
@@ -34,9 +34,9 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\MeterReading.Interfaces\MeterReadingInterfaces.csproj" />
-    <ProjectReference Include="..\MeterReading.Model\MeterReadingModel.csproj" />
-    <ProjectReference Include="..\MeterReading.Repository\MeterReadingRepository.csproj" />
+    <ProjectReference Include="..\MeterReadingInterfaces\MeterReadingInterfaces.csproj" />
+    <ProjectReference Include="..\MeterReadingModel\MeterReadingModel.csproj" />
+    <ProjectReference Include="..\MeterReadingRepository\MeterReadingRepository.csproj" />
     <ProjectReference Include="..\MeterReadingServices\MeterReadingServices.csproj" />
     <ProjectReference Include="..\MeterReadingWebAPI\MeterReadingWebAPI.csproj" />
   </ItemGroup>

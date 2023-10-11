@@ -13,11 +13,11 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Data", "Data", "{6D4509EC-B
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MeterReadingWebApiTests", "MeterReadingWebApiTests\MeterReadingWebApiTests.csproj", "{00F2A172-61D1-483B-82D0-8311FF43F8A6}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MeterReadingRepository", "MeterReading.Repository\MeterReadingRepository.csproj", "{10CBCC92-2B33-40DE-84B5-BEF3597F8FF5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MeterReadingRepository", "MeterReadingRepository\MeterReadingRepository.csproj", "{10CBCC92-2B33-40DE-84B5-BEF3597F8FF5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MeterReadingInterfaces", "MeterReading.Interfaces\MeterReadingInterfaces.csproj", "{4C6429CB-9840-4E59-976F-330E0477907E}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MeterReadingInterfaces", "MeterReadingInterfaces\MeterReadingInterfaces.csproj", "{4C6429CB-9840-4E59-976F-330E0477907E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MeterReadingModel", "MeterReading.Model\MeterReadingModel.csproj", "{41A68FB1-FF3E-4CEB-B52E-BC50D24DC858}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MeterReadingModel", "MeterReadingModel\MeterReadingModel.csproj", "{41A68FB1-FF3E-4CEB-B52E-BC50D24DC858}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MeterReadingServices", "MeterReadingServices\MeterReadingServices.csproj", "{66DC160F-E8EE-46D8-9AE5-DB91BC650B6C}"
 EndProject

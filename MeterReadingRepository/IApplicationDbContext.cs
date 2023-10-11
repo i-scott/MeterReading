@@ -5,11 +5,13 @@ using MeterReadingModel;
 
 namespace MeterReadingRepository
 {
-    internal interface IApplicationDbContext
+    public interface IApplicationDbContext
     {
         public IDbConnection Connection { get; }
         DatabaseFacade Database { get; }
         public DbSet<MeterReading> MeterReadings { get; set; }
+        public DbSet<Account> Accounts { get; set; }
+
         Task<int> SaveChangesAsync(CancellationToken cancellationToken);
     }
 }

@@ -34,12 +34,13 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="TempData\" />
+    <ProjectReference Include="..\MeterReadingInterfaces\MeterReadingInterfaces.csproj" />
+    <ProjectReference Include="..\MeterReadingModel\MeterReadingModel.csproj" />
+    <ProjectReference Include="..\MeterReadingService\MeterReadingServices.csproj" />
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\MeterReading.Interfaces\MeterReadingInterfaces.csproj" />
-    <ProjectReference Include="..\MeterReading.Model\MeterReadingModel.csproj" />
+    <Folder Include="TempData\" />
   </ItemGroup>
 
 </Project>

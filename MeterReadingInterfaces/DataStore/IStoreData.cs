@@ -2,6 +2,6 @@
 {
     public interface IStoreData<in TEntity, TKeyType>
     {
-        Task<TKeyType> SetAsync(TEntity uuid);
+        Task<long?> SetAsync(TEntity uuid);
     }
 }

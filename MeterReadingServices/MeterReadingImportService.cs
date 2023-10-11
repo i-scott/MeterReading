@@ -1,22 +1,26 @@
-﻿using CSVFile;
+﻿using System;
+using System.Threading.Tasks;
+using CSVFile;
 using MeterReadingServices.Parser;
 using MeterReadingServices.Validators.CSVDataValidators;
-using System;
+using Microsoft.Extensions.Logging;
 
 namespace MeterReadingServices
 {
-    public class MeterReadingService : IMeterReadingService
+    public class MeterReadingImportService : IMeterReadingImportService
     {
         private IMeterReadingParser _meterReadingParser;
+        private readonly ILogger<MeterReadingImportService> _logger;
         private IMeterReadingCSVValidator _meterReadingCSVValidator;
 
-        public MeterReadingService(IMeterReadingCSVValidator meterReadingValidator, IMeterReadingParser meterReadingParser)
+        public MeterReadingImportService(IMeterReadingCSVValidator meterReadingValidator, IMeterReadingParser meterReadingParser, ILogger<MeterReadingImportService> logger)
         {
             _meterReadingParser = meterReadingParser;
+            _logger = logger;
             _meterReadingCSVValidator = meterReadingValidator;
         }
 
-        public int ImportFromFiles(string[] fileNames)
+        public async Task<int> ImportFromFilesAsync(string[] fileNames)
         {
             int linesProcessed = 0;
 
@@ -38,7 +42,7 @@ namespace MeterReadingServices
                         }
                         catch (Exception ex)
                         {
-
+                            _logger.LogError(ex, $"Unable to import line {line} from {fileName}");
                         }
                     }
                 }
