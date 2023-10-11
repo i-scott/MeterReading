@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace MeterReadingWebAPI.Model
+namespace MeterReadingModel
 {
     public class MeterReading
     {

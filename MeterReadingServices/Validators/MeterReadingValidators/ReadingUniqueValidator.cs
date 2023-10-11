@@ -1,6 +1,6 @@
-﻿using MeterReadingWebAPI.Model;
+﻿using MeterReadingModel;
 
-namespace MeterReadingWebAPI.Services.Validators.MeterReadingValidators
+namespace MeterReadingServices.Validators.MeterReadingValidators
 {
     public class ReadingUniqueValidator : IValidator
     {

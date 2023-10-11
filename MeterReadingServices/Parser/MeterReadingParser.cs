@@ -1,7 +1,7 @@
-﻿using MeterReadingWebAPI.Model;
+﻿using MeterReadingModel;
 using System;
 
-namespace MeterReadingWebAPI.Services.Parser
+namespace MeterReadingServices.Parser
 {
     public class MeterReadingParser : IMeterReadingParser
     {

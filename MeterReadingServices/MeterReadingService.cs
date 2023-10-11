@@ -1,9 +1,9 @@
 ﻿using CSVFile;
-using MeterReadingWebAPI.Services.Parser;
-using MeterReadingWebAPI.Services.Validators.CSVDataValidators;
+using MeterReadingServices.Parser;
+using MeterReadingServices.Validators.CSVDataValidators;
 using System;
 
-namespace MeterReadingWebAPI.Services
+namespace MeterReadingServices
 {
     public class MeterReadingService : IMeterReadingService
     {
@@ -16,7 +16,7 @@ namespace MeterReadingWebAPI.Services
             _meterReadingCSVValidator = meterReadingValidator;
         }
 
-        public int ImportFromFiles(string [] fileNames)
+        public int ImportFromFiles(string[] fileNames)
         {
             int linesProcessed = 0;
 
@@ -32,8 +32,7 @@ namespace MeterReadingWebAPI.Services
                             if (_meterReadingCSVValidator.IsValid(csvReader.Headers, line))
                             {
                                 var meterReading = _meterReadingParser.ToMeterReading(line);
-
-
+                                
                                 linesProcessed++;
                             }
                         }

@@ -34,7 +34,10 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\MeterReading-WebAPI\MeterReadingWebAPI.csproj" />
+    <ProjectReference Include="..\MeterReading.Interfaces\MeterReadingInterfaces.csproj" />
+    <ProjectReference Include="..\MeterReading.Model\MeterReadingModel.csproj" />
+    <ProjectReference Include="..\MeterReading.Repository\MeterReadingRepository.csproj" />
+    <ProjectReference Include="..\MeterReadingServices\MeterReadingServices.csproj" />
     <ProjectReference Include="..\MeterReadingWebAPI\MeterReadingWebAPI.csproj" />
   </ItemGroup>
 
@@ -45,6 +48,10 @@
     <None Update="TestData\Meter_Reading.csv">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Tests\ValidatorTests\MeterReadingValidatorTests\" />
   </ItemGroup>
 
 </Project>

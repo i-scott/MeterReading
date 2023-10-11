@@ -1,13 +1,12 @@
 ﻿using FluentAssertions;
-using MeterReadingWebAPI.Services.Validators;
-using MeterReadingWebAPI.Services.Validators.CSVDataValidators;
+using MeterReadingServices.Validators.CSVDataValidators;
 using Xunit;
 
-namespace MeterReading_WebApiTests.Tests
+namespace MeterReading_WebApiTests.Tests.ValidatorTests.CSVDataValidators
 {
-    public class MeterReadingValidatorTests    
+    public class MeterReadingValidatorTests
     {
-        [Fact]        
+        [Fact]
         public void WhenValueIsNumber_ReturnsTrue()
         {
             var sut = new CSVMeterReadingValidator();

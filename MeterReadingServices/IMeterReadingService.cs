@@ -1,4 +1,4 @@
-﻿namespace MeterReadingWebAPI.Services
+﻿namespace MeterReadingServices
 {
     public interface IMeterReadingService
     {

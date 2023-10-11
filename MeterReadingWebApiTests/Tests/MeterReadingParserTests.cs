@@ -1,5 +1,5 @@
 ﻿using FluentAssertions;
-using MeterReadingWebAPI.Services;
+using MeterReadingServices.Parser;
 using Xunit;
 
 namespace MeterReading_WebApiTests.Tests

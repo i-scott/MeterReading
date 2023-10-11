@@ -37,4 +37,9 @@
     <Folder Include="TempData\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\MeterReading.Interfaces\MeterReadingInterfaces.csproj" />
+    <ProjectReference Include="..\MeterReading.Model\MeterReadingModel.csproj" />
+  </ItemGroup>
+
 </Project>

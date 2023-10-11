@@ -1,4 +1,4 @@
-﻿namespace MeterReadingWebAPI.Services.Validators.CSVDataValidators
+﻿namespace MeterReadingServices.Validators.CSVDataValidators
 {
     public class CSVMeterReadingValidator : ICSVValidator
     {

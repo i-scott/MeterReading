@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace MeterReadingWebAPI.Services.Validators.CSVDataValidators
+namespace MeterReadingServices.Validators.CSVDataValidators
 {
     public class CSVMeterReadingDataValidator : ICSVValidator
     {
@@ -12,10 +12,10 @@ namespace MeterReadingWebAPI.Services.Validators.CSVDataValidators
         }
 
         public bool IsValid(string value)
-        {            
-            if(!DateTime.TryParse(value, out DateTime parsedDate)) return false;            
+        {
+            if (!DateTime.TryParse(value, out DateTime parsedDate)) return false;
 
-            if(parsedDate < _minimumReadingDate) return false;
+            if (parsedDate < _minimumReadingDate) return false;
 
             return true;
         }

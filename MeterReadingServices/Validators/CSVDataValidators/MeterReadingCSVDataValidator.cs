@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace MeterReadingWebAPI.Services.Validators.CSVDataValidators
+namespace MeterReadingServices.Validators.CSVDataValidators
 {
     public class MeterReadingCSVDataValidator : IMeterReadingCSVValidator
     {
@@ -16,14 +16,15 @@ namespace MeterReadingWebAPI.Services.Validators.CSVDataValidators
         {
             if (headers.Length != strings.Length) throw new ArgumentException("Header, CSV Values, length mismatch");
 
-            for( int i  = 0; i < headers.Length; i++) {
+            for (int i = 0; i < headers.Length; i++)
+            {
 
                 if (!_validators.TryGetValue(headers[i], out ICSVValidator validator)) throw new ArgumentNullException($"Unknown validator {headers[i]}");
 
 
-                if (!validator.IsValid(strings[i])) return false; 
+                if (!validator.IsValid(strings[i])) return false;
             }
-            
+
             return true;
         }
     }

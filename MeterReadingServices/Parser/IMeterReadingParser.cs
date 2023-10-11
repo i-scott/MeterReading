@@ -1,6 +1,6 @@
-﻿using MeterReadingWebAPI.Model;
+﻿using MeterReadingModel;
 
-namespace MeterReadingWebAPI.Services.Parser
+namespace MeterReadingServices.Parser
 {
     public interface IMeterReadingParser
     {
