@@ -1,9 +1,10 @@
-﻿using System.Threading.Tasks;
+﻿using MeterReadingModel.View;
+using System.Threading.Tasks;
 
 namespace MeterReadingServices
 {
     public interface IMeterReadingImportService
     {
-        Task<int> ImportFromFilesAsync(string[] fileNames);
+        Task<CSVImportProcessedResponse> ImportFromFilesAsync(string[] fileNames);
     }
 }

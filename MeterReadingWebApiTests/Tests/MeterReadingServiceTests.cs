@@ -29,7 +29,7 @@ namespace MeterReading_WebApiTests.Tests
             // dont like this CSV FIle is Hard Value, should be abstracted out
             var result = await sut.ImportFromFilesAsync(files);
 
-            result.Should().Be(1);
+            result.ProcessedSuccessfully.Should().Be(1);
         }
 
         [Fact]
@@ -47,7 +47,7 @@ namespace MeterReading_WebApiTests.Tests
             // dont like this CSV FIle is Hard Value, should be abstracted out
             var result = await sut.ImportFromFilesAsync(files);
 
-            result.Should().Be(0);
+            result.FailedToProcess.Should().Be(0);
         }
     }
 }

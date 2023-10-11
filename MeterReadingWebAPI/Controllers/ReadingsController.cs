@@ -17,11 +17,13 @@ namespace MeterReadingWebAPI.Controllers
     public class ReadingsController : ControllerBase
     {
         private readonly IFormFileUploader _formFileUploader;
+        private readonly IMeterReadingImportService _meterReadingImportService;
         private readonly ILogger<ReadingsController> _logger;
 
         public ReadingsController(IFormFileUploader formFileUploader, IMeterReadingImportService meterReadingImportService, ILogger<ReadingsController> logger)
         {
             _formFileUploader = formFileUploader;
+            _meterReadingImportService = meterReadingImportService;
             _logger = logger;
         }
 
@@ -46,7 +48,7 @@ namespace MeterReadingWebAPI.Controllers
             {
                 var uploadedFiles = await _formFileUploader.UploadFilesAsync(files);
 
-                //var result = 
+                var result = await _meterReadingImportService.ImportFromFilesAsync(uploadedFiles);
 
             }
             catch (Exception ex)

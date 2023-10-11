@@ -1,15 +1,22 @@
 ﻿using System.Data;
-using MeterReadingModel;
-using Microsoft.EntityFrameworkCore;
+using Microsoft.Data.SqlClient;
+using Microsoft.Extensions.Configuration;
 
-namespace MeterReadingRepository.Dapper
-{
-    public class DapperDBContext : DbContext, IApplicationDbContext
+namespace MeterReadingRepository.Dapper {
+
+    public class DapperDBContext
     {
-        public DapperDBContext() { }
-        public DapperDBContext(DbContextOptions<DapperDBContext> options) : base(options) { }
-        public IDbConnection Connection { get; }
-        public DbSet<MeterReading> MeterReadings { get; set; }
-        public DbSet<Account> Accounts { get; set; }
-    }
+        private readonly IConfiguration _configuration;
+        private readonly string _connectionString;
+
+        public DapperDBContext(IConfiguration configuration)
+        {
+            _configuration = configuration;
+        }
+
+        public IDbConnection CreateConnection()
+            => new SqlConnection(_configuration.GetConnectionString("SqlConnection"));
+        public IDbConnection CreateMasterConnection()
+            => new SqlConnection(_configuration.GetConnectionString("MasterConnection"));
+    } 
 }

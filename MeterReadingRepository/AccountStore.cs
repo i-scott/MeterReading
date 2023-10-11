@@ -1,8 +1,9 @@
 ﻿using System;
 using System.Threading.Tasks;
+using Dapper;
 using MeterReadingInterfaces.DataStore;
 using MeterReadingModel;
-using Microsoft.EntityFrameworkCore;
+using MeterReadingRepository.Dapper;
 using Microsoft.Extensions.Logging;
 
 
@@ -10,21 +11,28 @@ namespace MeterReadingRepository
 {
     public class AccountStore : IFetchData<Account, long>
     {
-        private readonly IApplicationDbContext _dbContext;
-        private readonly ILogger<MeterReadingStore> _logger;
+        private readonly DapperDBContext _dbContext;
+        private readonly ILogger<AccountStore> _logger;
 
-        public AccountStore(IApplicationDbContext dbContext, ILogger<MeterReadingStore> logger)
+        public AccountStore(DapperDBContext dbContext, ILogger<AccountStore> logger)
         {
             _dbContext = dbContext;
             _logger = logger;
         }
+
         public async Task<Account> FetchDataAsync(long key)
         {
             try
             {
-                var result = await _dbContext.Accounts.SingleOrDefaultAsync(act => act.Id == key);
+                string fetchQuery = "select * from Accounts where AccountId = @AccountId";
 
-                return result;
+                using (var connection = _dbContext.CreateConnection())
+                {
+                    var parameters = new { AccountId = key };
+                    var result = await connection.QuerySingleOrDefaultAsync<Account>(fetchQuery, parameters);
+
+                    return result;
+                }
             }
             catch (Exception ex)
             {

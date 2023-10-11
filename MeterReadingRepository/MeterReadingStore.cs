@@ -3,17 +3,19 @@ using System.Threading;
 using System.Threading.Tasks;
 using MeterReadingModel;
 using MeterReadingInterfaces.DataStore;
-using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
+using MeterReadingRepository.Dapper;
+using Dapper;
+using Microsoft.EntityFrameworkCore.Metadata.Internal;
 
 namespace MeterReadingRepository
 {
     public class MeterReadingStore : IStoreData<MeterReading, long>, IFetchData<MeterReading, long>
     {
-        private readonly IApplicationDbContext _dbContext;
+        private readonly DapperDBContext _dbContext;
         private readonly ILogger<MeterReadingStore> _logger;
 
-        public MeterReadingStore(IApplicationDbContext dbContext, ILogger<MeterReadingStore> logger)
+        public MeterReadingStore(DapperDBContext dbContext, ILogger<MeterReadingStore> logger)
         {
             _dbContext = dbContext;
             _logger = logger;
@@ -23,7 +25,12 @@ namespace MeterReadingRepository
         {
             try
             {
-                var result = await _dbContext.MeterReadings.SingleOrDefaultAsync(mr => mr.AccountId == key);
+                string fetchQuery = "select * from MeterReadings where AccountId = @AccountId, MeterReadValue = @MeterReadValue";
+
+                using var connection = _dbContext.CreateConnection();
+                var parameters = new { AccountId = key };
+                var result = await connection.QuerySingleOrDefaultAsync<MeterReading>(fetchQuery, parameters);
+
                 return result;
             }
             catch (Exception ex)
@@ -38,11 +45,12 @@ namespace MeterReadingRepository
         {
             try
             {
-                var result = await _dbContext.MeterReadings.AddAsync(meterReading);
+                var sql = "INSERT INTO MeterReading(AccountId, MeterReadingDateTime, MeterReadValue) VALUES (@AccountId, @MeterReadingDateTime, @MeterReadValue)";
 
-                var numberSaved = _dbContext.SaveChangesAsync(CancellationToken.None);
+                using var connection = _dbContext.CreateConnection();
+                var result = await connection.ExecuteAsync(sql, meterReading);
 
-                return result.Entity.AccountId;
+                return result;
             }
             catch (Exception ex)
             {

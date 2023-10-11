@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Threading.Tasks;
 using CSVFile;
+using MeterReadingModel.View;
 using MeterReadingServices.Parser;
 using MeterReadingServices.Validators.CSVDataValidators;
 using Microsoft.Extensions.Logging;
@@ -20,9 +21,9 @@ namespace MeterReadingServices
             _meterReadingCSVValidator = meterReadingValidator;
         }
 
-        public async Task<int> ImportFromFilesAsync(string[] fileNames)
+        public async Task<CSVImportProcessedResponse> ImportFromFilesAsync(string[] fileNames)
         {
-            int linesProcessed = 0;
+            var processResponse = new CSVImportProcessedResponse();
 
             foreach (string fileName in fileNames)
             {
@@ -36,18 +37,19 @@ namespace MeterReadingServices
                             if (_meterReadingCSVValidator.IsValid(csvReader.Headers, line))
                             {
                                 var meterReading = _meterReadingParser.ToMeterReading(line);
-                                
-                                linesProcessed++;
+
+                                processResponse.ProcessedSuccessfully++;
                             }
                         }
                         catch (Exception ex)
                         {
                             _logger.LogError(ex, $"Unable to import line {line} from {fileName}");
+                            processResponse.FailedToProcess++;
                         }
                     }
                 }
             }
-            return linesProcessed;
+            return processResponse;
         }
     }
 }
