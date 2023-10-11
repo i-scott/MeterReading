@@ -1,6 +1,6 @@
 ﻿namespace MeterReadingWebAPI.Services.Validators.CSVDataValidators
 {
-    public interface IValidator
+    public interface ICSVValidator
     {
         bool IsValid(string value);
     }

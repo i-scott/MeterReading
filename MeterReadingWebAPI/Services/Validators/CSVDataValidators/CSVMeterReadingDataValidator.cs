@@ -2,11 +2,11 @@
 
 namespace MeterReadingWebAPI.Services.Validators.CSVDataValidators
 {
-    public class MeterReadingDataValidator : IValidator
+    public class CSVMeterReadingDataValidator : ICSVValidator
     {
         private readonly DateTime _minimumReadingDate;
 
-        public MeterReadingDataValidator(DateTime minimumReadingDate)
+        public CSVMeterReadingDataValidator(DateTime minimumReadingDate)
         {
             _minimumReadingDate = minimumReadingDate;
         }

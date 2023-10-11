@@ -1,6 +1,7 @@
 ﻿using FluentAssertions;
 using MeterReadingWebAPI.Model;
 using MeterReadingWebAPI.Services;
+using MeterReadingWebAPI.Services.Parser;
 using MeterReadingWebAPI.Services.Validators.CSVDataValidators;
 using Moq;
 using Xunit;
