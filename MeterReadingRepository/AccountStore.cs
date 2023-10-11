@@ -43,7 +43,7 @@ namespace MeterReadingRepository
             return null;
         }
 
-        public Task<IList<Account>> FetchDataAsync(string query, object param = null)
+        public Task<IList<Account>> FetchDataAsync(string query, object? param = null)
         {
             throw new NotImplementedException();
         }

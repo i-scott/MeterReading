@@ -14,9 +14,11 @@ namespace MeterReading_WebApiTests.Tests
 {
     public class MeterReadingServiceTests
     {
+#pragma warning disable CS8601 // Possible null reference assignment.
         private readonly string ApplicationBaseDir = AppDomain.CurrentDomain.SetupInformation.ApplicationBase;
+#pragma warning restore CS8601 // Possible null reference assignment.
         [Fact]                
-        public async void WhenGivenValidFile_ReturnsNumberProcessed()
+        public void WhenGivenValidFile_ReturnsNumberProcessed()
         {
             var meterReadingCSVValidator = new Mock<IMeterReadingCSVValidator>();
             var meterReadingParser = new Mock<IMeterReadingParser>();
@@ -36,14 +38,14 @@ namespace MeterReading_WebApiTests.Tests
 
             var files = new[] { $"{ApplicationBaseDir}\\TestData\\Single_Reading.csv" };
             // dont like this CSV FIle is Hard Value, should be abstracted out
-            var result = await sut.ImportFromFilesAsync(files);
+            var result = sut.ImportFromFiles(files);
 
             result.ProcessedSuccessfully.Should().Be(1);
             result.FilesProcessed.Should().Be(1);
         }
 
         [Fact]
-        public async void WhenGivenInvalidFile_ReturnsZero()
+        public void WhenGivenInvalidFile_ReturnsZero()
         {
             var meterReadingCSVValidator = new Mock<IMeterReadingCSVValidator>();
             var meterReadingParser = new Mock<IMeterReadingParser>();
@@ -58,7 +60,7 @@ namespace MeterReading_WebApiTests.Tests
 
             var files = new[] { $"{ApplicationBaseDir}\\TestData\\DoesNotExist.csv" };
             // dont like this CSV FIle is Hard Value, should be abstracted out
-            var result = await sut.ImportFromFilesAsync(files);
+            var result = sut.ImportFromFiles(files);
 
             result.FailedToProcess.Should().Be(0);
             result.FilesNotProcessed.Should().Be(1);

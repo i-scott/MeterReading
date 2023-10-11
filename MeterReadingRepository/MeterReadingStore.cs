@@ -43,7 +43,7 @@ namespace MeterReadingRepository
             return null;
         }
 
-        public async Task<IList<MeterReading>> FetchDataAsync(string query, object param = null)
+        public async Task<IList<MeterReading>> FetchDataAsync(string query, object? param = null)
         {
             try
             {

@@ -1,8 +1,6 @@
-using MeterReadingWebAPI.AppServices;
 using MeterReadingWebAPI.Infrastructure;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Mvc.ApiExplorer;
-using Microsoft.AspNetCore.Mvc.Versioning;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -10,10 +8,8 @@ using Swashbuckle.AspNetCore.Filters;
 using System.IO;
 using System;
 using MeterReadingRepository.Dapper;
-using MeterReadingWebAPI.Migrations;
+using MeterReadingRepositoryMigrations;
 using Microsoft.Extensions.Logging;
-using FluentMigrator.Runner;
-using System.Reflection;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -28,21 +24,7 @@ builder.Configuration.AddConfiguration(new ConfigurationBuilder()
     .Build());
 
 // Add services to the container.
-builder.Services.AddApiVersioning(opt =>
-{
-    opt.DefaultApiVersion = new Microsoft.AspNetCore.Mvc.ApiVersion(1, 0);
-    opt.AssumeDefaultVersionWhenUnspecified = true;
-    opt.ReportApiVersions = true;
-    opt.ApiVersionReader = ApiVersionReader.Combine(new UrlSegmentApiVersionReader(),
-        new HeaderApiVersionReader("x-api-version"),
-        new MediaTypeApiVersionReader("x-api-version"));
-});
-
-builder.Services.AddVersionedApiExplorer(setup =>
-{
-    setup.GroupNameFormat = "'v'VVV";
-    setup.SubstituteApiVersionInUrl = true;
-});
+builder.Services.AddVersioning();
 
 builder.Services.AddControllers()
                 .AddNewtonsoftJson();
@@ -50,20 +32,11 @@ builder.Services.AddControllers()
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 
+builder.Services.AddMigrationsLogging(builder.Configuration);
+
 builder.Services.AddDapper();
 
-builder.Services.AddLogging(c => c.AddFluentMigratorConsole())
-    .AddFluentMigratorCore()
-    .ConfigureRunner(c => c.AddSqlServer2012()
-        .WithGlobalConnectionString(builder.Configuration.GetConnectionString("SqlConnection"))
-        .ScanIn(Assembly.GetExecutingAssembly()).For.Migrations());
-
-builder.Services.AddSingleton<IFormFileUploader>((provider) =>
-{
-    var applicationDirectory = Directory.GetCurrentDirectory();
-    var logger = provider.GetService<ILogger<FormFileToTempStoreUploader>>();
-    return new FormFileToTempStoreUploader(applicationDirectory, logger);
-});
+builder.Services.AddTemporaryFileUploader();
 
 builder.Services.AddServices();
 

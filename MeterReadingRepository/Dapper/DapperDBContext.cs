@@ -7,7 +7,6 @@ namespace MeterReadingRepository.Dapper {
     public class DapperDBContext
     {
         private readonly IConfiguration _configuration;
-        private readonly string _connectionString;
 
         public DapperDBContext(IConfiguration configuration)
         {

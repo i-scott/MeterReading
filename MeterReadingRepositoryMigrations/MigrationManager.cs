@@ -1,11 +1,10 @@
-﻿using System;
-using FluentMigrator.Runner;
+﻿using FluentMigrator.Runner;
 using MeterReadingRepository.Dapper;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 
-namespace MeterReadingWebAPI.Migrations
+namespace MeterReadingRepositoryMigrations
 {
     public static class MigrationManager
     {
@@ -25,7 +24,7 @@ namespace MeterReadingWebAPI.Migrations
                 migrationService.ListMigrations();
                 migrationService.MigrateUp();
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 logger.LogCritical(ex, "Unable to create/migrate database");
                 throw;

@@ -10,6 +10,6 @@ namespace MeterReadingInterfaces.DataStore
     {
         Task<TEntity?> FetchDataAsync(TKeyType key);
 
-        Task<IList<TEntity>> FetchDataAsync(string query, object param = null);
+        Task<IList<TEntity>> FetchDataAsync(string query, object? param = null);
     }
 }

@@ -1,6 +1,6 @@
 ﻿using FluentMigrator;
 
-namespace MeterReadingWebAPI.Migrations.DataMigrations
+namespace MeterReadingRepositoryMigrations.DataMigrations
 {
     [Migration(202310010001)]
     public class InitialTables_202310110001 : Migration

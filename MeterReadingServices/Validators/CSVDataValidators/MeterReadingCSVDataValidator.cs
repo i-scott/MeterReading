@@ -20,7 +20,7 @@ namespace MeterReadingServices.Validators.CSVDataValidators
             {
                 if(string.IsNullOrEmpty(headers[i])) continue;
 
-                if (!_validators.TryGetValue(headers[i], out ICSVValidator validator)) throw new ArgumentNullException($"Unknown validator {headers[i]}");
+                if (!_validators.TryGetValue(headers[i], out var validator)) throw new ArgumentNullException($"Unknown validator {headers[i]}");
 
                 if (!validator.IsValid(strings[i])) return false;
             }

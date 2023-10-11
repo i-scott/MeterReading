@@ -9,6 +9,7 @@ using System.IO;
 using System.Net.WebSockets;
 using MeterReadingServices;
 using MeterReadingWebAPI.AppServices;
+using MeterReadingModel.View;
 
 namespace MeterReadingWebAPI.Controllers
 {
@@ -30,7 +31,7 @@ namespace MeterReadingWebAPI.Controllers
         [HttpPost()]
         [MapToApiVersion("1.0")]
         [Route("api/v{version:apiVersion}/meter-reading-uploads")]
-        [ProducesResponseType(typeof(string), StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(CSVImportProcessedResponse), StatusCodes.Status200OK)]
         [ProducesResponseType(typeof(string), StatusCodes.Status400BadRequest)]
         [SwaggerResponseHeader(StatusCodes.Status201Created, "Location", "URI", "Location to the newly created catalogue item")]
         [SwaggerOperation(Summary = "Upload Meter Reading Data in CSV Format",
@@ -42,13 +43,11 @@ namespace MeterReadingWebAPI.Controllers
 
             if(!files[0].FileName.ToLower().EndsWith("csv")) return BadRequest("You must send a csv file");
 
-            if (files.Count > 1) return BadRequest("We can only process one file at a time");
-
             try
             {
                 var uploadedFiles = await _formFileUploader.UploadFilesAsync(files);
 
-                var result = await _meterReadingImportService.ImportFromFilesAsync(uploadedFiles);
+                var result = _meterReadingImportService.ImportFromFiles(uploadedFiles);
 
                 return Ok(result);
             }
@@ -57,8 +56,6 @@ namespace MeterReadingWebAPI.Controllers
                 _logger.LogError(ex, "Meter Reading Upload failed" );
                 return StatusCode(500);
             }
-
-            
         }
     }
 }

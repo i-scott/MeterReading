@@ -5,6 +5,6 @@ namespace MeterReadingServices
 {
     public interface IMeterReadingImportService
     {
-        Task<CSVImportProcessedResponse> ImportFromFilesAsync(string[] fileNames);
+        CSVImportProcessedResponse ImportFromFiles(string[] fileNames);
     }
 }

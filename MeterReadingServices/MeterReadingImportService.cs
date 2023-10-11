@@ -33,7 +33,7 @@ namespace MeterReadingServices
             _meterReadingCSVValidator = meterReadingCSVValidator;
         }
 
-        public async Task<CSVImportProcessedResponse> ImportFromFilesAsync(string[] fileNames)
+        public CSVImportProcessedResponse ImportFromFiles(string[] fileNames)
         {
             var processResponse = new CSVImportProcessedResponse();
 
@@ -64,7 +64,7 @@ namespace MeterReadingServices
 
                                 var inserted = _meterReadingStore.Set(meterReading);
 
-                                if( inserted != 0 ) 
+                                if (inserted != 0)
                                     processResponse.ProcessedSuccessfully++;
                                 else
                                     processResponse.FailedToProcess++;

@@ -55,6 +55,24 @@ namespace MeterReading_WebApiTests.ControllerTests.v1.ReadingControllerTests.POS
         }
 
         [Fact]
+        public async Task WhenGivenMultipleCsvFiles_ReturnsOkRequest()
+        {
+            var testData = "test,test,test";
+
+            var testFiles = CreateTestFile("test.csv", testData);
+
+            var byteArrayContent = new ByteArrayContent(Encoding.UTF8.GetBytes(testData));
+            byteArrayContent.Headers.ContentType = MediaTypeHeaderValue.Parse("multipart/form-data");
+            testFiles.Add(byteArrayContent, "files", "test.csv");
+            testFiles.Add(byteArrayContent, "files", "test.csv");
+
+            var result = await _httpClient.PostAsync("/api/v1/meter-reading-uploads", testFiles);
+
+            result.IsSuccessStatusCode.Should().BeTrue();
+            result.StatusCode.Should().Be(HttpStatusCode.OK);
+        }
+
+        [Fact]
         public async Task WhenGivenNONCsvFile_ReturnsBadRequest()
         {
             var testData = "test,test,test";
@@ -65,22 +83,7 @@ namespace MeterReading_WebApiTests.ControllerTests.v1.ReadingControllerTests.POS
             result.StatusCode.Should().Be(HttpStatusCode.BadRequest);
         }
 
-        [Fact]
-        public async Task WhenGivenMultipleCsvFiles_ReturnsBadRequest()
-        {
-            var testData = "test,test,test";
 
-            var testFiles = CreateTestFile("test.png", testData);
-
-            var byteArrayContent = new ByteArrayContent(Encoding.UTF8.GetBytes(testData));
-            byteArrayContent.Headers.ContentType = MediaTypeHeaderValue.Parse("multipart/form-data");
-            testFiles.Add(byteArrayContent, "files", "test.csv");
-
-            var result = await _httpClient.PostAsync("/api/v1/meter-reading-uploads", testFiles);
-
-            result.IsSuccessStatusCode.Should().BeFalse();
-            result.StatusCode.Should().Be(HttpStatusCode.BadRequest);
-        }
     }
 }
     

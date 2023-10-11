@@ -19,8 +19,8 @@ namespace MeterReading_WebApiTests.ControllerTests.v1.ReadingControllerTests.POS
 
             var mockMeterReadingService = new Mock<IMeterReadingImportService>();
 
-            mockMeterReadingService.Setup(mrs => mrs.ImportFromFilesAsync(It.IsAny<string[]>()))
-                .ReturnsAsync(new CSVImportProcessedResponse() { FilesProcessed = 1, ProcessedSuccessfully = 1 });
+            mockMeterReadingService.Setup(mrs => mrs.ImportFromFiles(It.IsAny<string[]>()))
+                .Returns(new CSVImportProcessedResponse() { FilesProcessed = 1, ProcessedSuccessfully = 1 });
 
             services.AddSingleton(mockMeterReadingService.Object);
 

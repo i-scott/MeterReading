@@ -3,7 +3,7 @@ using FluentMigrator;
 using FluentMigrator.SqlServer;
 using MeterReadingModel;
 
-namespace MeterReadingWebAPI.Migrations.DataMigrations
+namespace MeterReadingRepositoryMigrations.DataMigrations
 {
     [Migration(202310010002)]
     public class InitialSeed_202310010002 : Migration

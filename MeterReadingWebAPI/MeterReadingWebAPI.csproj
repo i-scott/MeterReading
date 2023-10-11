@@ -36,11 +36,8 @@
   <ItemGroup>
     <ProjectReference Include="..\MeterReadingInterfaces\MeterReadingInterfaces.csproj" />
     <ProjectReference Include="..\MeterReadingModel\MeterReadingModel.csproj" />
+    <ProjectReference Include="..\MeterReadingRepositoryMigrations\MeterReadingRepositoryMigrations.csproj" />
     <ProjectReference Include="..\MeterReadingServices\MeterReadingServices.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="TempData\" />
   </ItemGroup>
 
 </Project>
