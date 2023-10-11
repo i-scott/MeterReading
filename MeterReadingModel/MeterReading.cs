@@ -1,8 +1,7 @@
 ﻿using System;
 
 namespace MeterReadingModel
-{
-    public class MeterReading
+{    public class MeterReading
     {
         public long AccountId { get; set; }
         public DateTime MeterReadingDateTime { get; set; }

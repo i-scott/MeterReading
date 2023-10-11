@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Threading;
 using System.Threading.Tasks;
 using MeterReadingModel;
 using MeterReadingInterfaces.DataStore;
@@ -8,7 +7,6 @@ using MeterReadingRepository.Dapper;
 using Dapper;
 using System.Collections.Generic;
 using System.Linq;
-using Microsoft.Identity.Client;
 
 namespace MeterReadingRepository
 {
