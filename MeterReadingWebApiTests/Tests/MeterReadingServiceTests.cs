@@ -29,7 +29,9 @@ namespace MeterReading_WebApiTests.Tests
             meterReadingParser.Setup(mr => mr.ToMeterReading(It.IsAny<string[]>())).Returns(new MeterReading());
 
             meterReadingValidator.Setup(mr => mr.IsValid(It.IsAny<MeterReading>())).Returns(true);
-            
+
+            meterReadingStore.Setup(rs => rs.Set(It.IsAny<MeterReading>())).Returns(1);
+
             var sut = new MeterReadingImportService(meterReadingCSVValidator.Object, meterReadingParser.Object, meterReadingValidator.Object, meterReadingStore.Object, logger.Object);
 
             var files = new[] { $"{ApplicationBaseDir}\\TestData\\Single_Reading.csv" };

@@ -1,7 +1,7 @@
 ﻿namespace MeterReadingInterfaces.DataStore
 {
-    public interface IStoreData<in TEntity, TKeyType>
+    public interface IStoreData<in TEntity, out TKeyType>
     {
-        Task<TKeyType?> SetAsync(TEntity entity);
+        TKeyType Set(TEntity entity);
     }
 }

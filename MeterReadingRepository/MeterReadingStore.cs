@@ -8,10 +8,11 @@ using MeterReadingRepository.Dapper;
 using Dapper;
 using System.Collections.Generic;
 using System.Linq;
+using Microsoft.Identity.Client;
 
 namespace MeterReadingRepository
 {
-    public class MeterReadingStore : IStoreData<MeterReading, long?>, IFetchData<MeterReading, long>
+    public class MeterReadingStore : IStoreData<MeterReading, long>, IFetchData<MeterReading, long>
     {
         private readonly DapperDBContext _dbContext;
         private readonly ILogger<MeterReadingStore> _logger;
@@ -58,14 +59,16 @@ namespace MeterReadingRepository
             return new List<MeterReading>();
         }
 
-        public async Task<long?> SetAsync(MeterReading meterReading)
+        public long Set(MeterReading meterReading)
         {
             try
             {
-                var sql = "INSERT INTO MeterReading(AccountId, MeterReadingDateTime, MeterReadValue) VALUES (@AccountId, @MeterReadingDateTime, @MeterReadValue)";
+                var sql = "INSERT INTO MeterReadings(AccountId, MeterReadingDateTime, MeterReadValue) VALUES (@AccountId, @MeterReadingDateTime, @MeterReadValue)";
 
                 using var connection = _dbContext.CreateConnection();
-                var result = await connection.ExecuteAsync(sql, meterReading);
+                var parameters = new { AccountId = meterReading.AccountId, MeterReadingDateTime = meterReading.MeterReadingDateTime, MeterReadValue = meterReading.MeterReadValue };
+
+                var result =  connection.Execute(sql, parameters);
 
                 return result;
             }
@@ -74,7 +77,7 @@ namespace MeterReadingRepository
                 _logger.LogError(ex, $"Error Setting Meter reading for AccountId {meterReading.AccountId} for date {meterReading.MeterReadingDateTime}");
             }
 
-            return null;
+            return 0;
         }
     }
 }

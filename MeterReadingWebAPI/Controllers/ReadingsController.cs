@@ -50,6 +50,7 @@ namespace MeterReadingWebAPI.Controllers
 
                 var result = await _meterReadingImportService.ImportFromFilesAsync(uploadedFiles);
 
+                return Ok(result);
             }
             catch (Exception ex)
             {
@@ -57,7 +58,7 @@ namespace MeterReadingWebAPI.Controllers
                 return StatusCode(500);
             }
 
-            return Ok();
+            
         }
     }
 }

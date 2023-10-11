@@ -22,13 +22,13 @@ namespace MeterReadingServices.Validators.MeterReadingValidators
             try
             {
                 // dont like this would prefer to use ICriteria Object
-                var criteria = $"SELECT * FROM MeterReadings where MeterReadingDateTime > @MeterReadingDateTime AND AccountId = @AccountId AND MeterReadingValue = @MeterReadingValue";
+                var criteria = $"SELECT * FROM MeterReadings where CAST(MeterReadingDateTime AS DATE) > CAST( @MeterReadingDateTime AS DATE ) AND AccountId = @AccountId AND MeterReadValue = @MeterReadValue";
 
-                var parameters = new { MeterReadingDateTime = reading.MeterReadingDateTime, AccountId = reading.AccountId, MeterReadingValue = reading.MeterReadValue };
+                var parameters = new { MeterReadingDateTime = reading.MeterReadingDateTime.Date, AccountId = reading.AccountId, MeterReadValue = reading.MeterReadValue };
 
-                var result = _fetchMeterReadingData.FetchDataAsync(criteria, parameters);
+                var result = _fetchMeterReadingData.FetchDataAsync(criteria, parameters).Result;
 
-                if (result.Result != null)
+                if (result.Count == 0)
                 {
                     return true;
                 }

@@ -20,8 +20,8 @@ namespace MeterReadingServices.Validators.MeterReadingValidators
         {
             try
             {
-                var result = _fetchAccountData.FetchDataAsync(reading.AccountId);
-                if (result.Result != null)
+                var result = _fetchAccountData.FetchDataAsync(reading.AccountId).Result;
+                if (result != null)
                 {
                     return true;
                 }

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 using System.Threading.Tasks;
 using CSVFile;
 using MeterReadingInterfaces.DataStore;
@@ -61,8 +62,12 @@ namespace MeterReadingServices
                                     continue;
                                 }
 
-                                _meterReadingStore.SetAsync(meterReading);
-                                processResponse.ProcessedSuccessfully++;
+                                var inserted = _meterReadingStore.Set(meterReading);
+
+                                if( inserted != 0 ) 
+                                    processResponse.ProcessedSuccessfully++;
+                                else
+                                    processResponse.FailedToProcess++;
                             }
                             catch (Exception ex)
                             {
@@ -73,6 +78,8 @@ namespace MeterReadingServices
 
                         processResponse.FilesProcessed++;
                     }
+
+                    File.Delete(fileName);
                 }
                 catch (Exception ex)
                 {
