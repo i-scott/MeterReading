@@ -1,4 +1,6 @@
-﻿namespace MeterReading_WebApiTests.ControllerTests.Scaffolding
+﻿using System.Collections.Generic;
+
+namespace MeterReading_WebApiTests.ControllerTests.Scaffolding
 {
     public class BadRequestResponse
     {

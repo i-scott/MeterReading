@@ -5,6 +5,10 @@ using Microsoft.Extensions.Logging;
 using Microsoft.AspNetCore.Http;
 using System.Threading.Tasks;
 using System;
+using System.IO;
+using System.Net.WebSockets;
+using MeterReadingServices;
+using MeterReadingWebAPI.AppServices;
 
 namespace MeterReadingWebAPI.Controllers
 {
@@ -12,10 +16,12 @@ namespace MeterReadingWebAPI.Controllers
     [ApiController]
     public class ReadingsController : ControllerBase
     {
+        private readonly IFormFileUploader _formFileUploader;
         private readonly ILogger<ReadingsController> _logger;
 
-        public ReadingsController(ILogger<ReadingsController> logger)
+        public ReadingsController(IFormFileUploader formFileUploader, IMeterReadingImportService meterReadingImportService, ILogger<ReadingsController> logger)
         {
+            _formFileUploader = formFileUploader;
             _logger = logger;
         }
 
@@ -36,8 +42,18 @@ namespace MeterReadingWebAPI.Controllers
 
             if (files.Count > 1) return BadRequest("We can only process one file at a time");
 
-            var str = AppDomain.CurrentDomain.SetupInformation.ApplicationBase;
+            try
+            {
+                var uploadedFiles = await _formFileUploader.UploadFilesAsync(files);
 
+                //var result = 
+
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "Meter Reading Upload failed" );
+                return StatusCode(500);
+            }
 
             return Ok();
         }

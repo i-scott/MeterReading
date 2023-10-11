@@ -19,7 +19,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\MeterReadingInterfaces\MeterReadingInterfaces.csproj" />
-    <ProjectReference Include="..\MeterReadingWebAPI\MeterReadingWebAPI.csproj" />
+    <ProjectReference Include="..\MeterReadingModel\MeterReadingModel.csproj" />
   </ItemGroup>
 
 </Project>

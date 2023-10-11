@@ -7,6 +7,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="CSVFile" Version="3.1.2" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\MeterReadingInterfaces\MeterReadingInterfaces.csproj" />
     <ProjectReference Include="..\MeterReadingModel\MeterReadingModel.csproj" />
     <ProjectReference Include="..\MeterReadingRepository\MeterReadingRepository.csproj" />

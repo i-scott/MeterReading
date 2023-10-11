@@ -2,6 +2,7 @@
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Text;
+using System.Threading.Tasks;
 using FluentAssertions;
 using MeterReading_WebApiTests.ControllerTests.Scaffolding;
 using MeterReadingWebAPI.Controllers;

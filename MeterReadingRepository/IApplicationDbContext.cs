@@ -1,6 +1,8 @@
 ﻿using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore;
 using System.Data;
+using System.Threading;
+using System.Threading.Tasks;
 using MeterReadingModel;
 
 namespace MeterReadingRepository

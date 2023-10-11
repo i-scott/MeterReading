@@ -1,4 +1,5 @@
-﻿using FluentAssertions;
+﻿using System;
+using FluentAssertions;
 using MeterReadingServices.Parser;
 using Xunit;
 

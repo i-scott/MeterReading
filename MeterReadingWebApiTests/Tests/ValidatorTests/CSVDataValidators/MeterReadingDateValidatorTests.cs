@@ -1,4 +1,5 @@
-﻿using FluentAssertions;
+﻿using System;
+using FluentAssertions;
 using MeterReadingServices.Validators.CSVDataValidators;
 using Xunit;
 
