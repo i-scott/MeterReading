@@ -1,7 +1,10 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Swashbuckle.AspNetCore.Annotations;
 using Swashbuckle.AspNetCore.Filters;
-using CSVFile;
+using Microsoft.Extensions.Logging;
+using Microsoft.AspNetCore.Http;
+using System.Threading.Tasks;
+using System;
 
 namespace MeterReadingWebAPI.Controllers
 {
@@ -32,6 +35,9 @@ namespace MeterReadingWebAPI.Controllers
             if(!files[0].FileName.ToLower().EndsWith("csv")) return BadRequest("You must send a csv file");
 
             if (files.Count > 1) return BadRequest("We can only process one file at a time");
+
+            var str = AppDomain.CurrentDomain.SetupInformation.ApplicationBase;
+
 
             return Ok();
         }

@@ -1,4 +1,6 @@
-﻿namespace MeterReadingWebAPI.Model
+﻿using System;
+
+namespace MeterReadingWebAPI.Model
 {
     public class MeterReading
     {

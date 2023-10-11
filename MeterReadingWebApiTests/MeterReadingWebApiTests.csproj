@@ -35,6 +35,16 @@
 
   <ItemGroup>
     <ProjectReference Include="..\MeterReading-WebAPI\MeterReadingWebAPI.csproj" />
+    <ProjectReference Include="..\MeterReadingWebAPI\MeterReadingWebAPI.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="TestData\Single_Reading.csv">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="TestData\Meter_Reading.csv">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
 
 </Project>

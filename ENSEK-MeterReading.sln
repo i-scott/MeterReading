@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.6.33815.320
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MeterReadingWebAPI", "MeterReading-WebAPI\MeterReadingWebAPI.csproj", "{1FFD96CD-44D3-411A-ACB6-F785B275F8BA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MeterReadingWebAPI", "MeterReadingWebAPI\MeterReadingWebAPI.csproj", "{1FFD96CD-44D3-411A-ACB6-F785B275F8BA}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Data", "Data", "{6D4509EC-B6A6-4057-BCC4-1ACA864F11AB}"
 	ProjectSection(SolutionItems) = preProject
@@ -11,7 +11,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Data", "Data", "{6D4509EC-B
 		data\Test_Accounts.csv = data\Test_Accounts.csv
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MeterReading-WebApiTests", "MeterReading-WebApiTests\MeterReading-WebApiTests.csproj", "{00F2A172-61D1-483B-82D0-8311FF43F8A6}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MeterReading-WebApiTests", "MeterReadingWebApiTests\MeterReadingWebApiTests.csproj", "{00F2A172-61D1-483B-82D0-8311FF43F8A6}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
